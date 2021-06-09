@@ -30,3 +30,15 @@ var formsubmitHandler = function(event){
 var saveSearch = function(){
     localStorage.setItem("cities", JSON.stringify(cities));
 };
+
+//this function is for the history link button to go back to past searches
+var pastSearch = function(pastSearch){
+    pastSearchEl = document.createElement("button");
+    pastSearchEl.textContent = pastSearch;
+    //here we are costumizing the list 
+    pastSearchEl.classList = "d-flex btn-light border p-3";
+    pastSearchEl.setAttribute("data-city",pastSearch)
+    pastSearchEl.setAttribute("type", "submit");
+
+    searchHistoryButtonEl.prepend(pastSearchEl);
+}
