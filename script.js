@@ -51,3 +51,16 @@ var pastSearchHandler = function(event){
         get5Day(city);
     }
 }
+
+//fetch data from API for the weather forecast
+var getCityWeather = function(city){
+    var apiKey = "844421298d794574c100e3409cee0499"
+    var apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
+
+    fetch(apiURL)
+    .then(function(response){
+        response.json().then(function(data){
+            displayWeather(data, city);
+        });
+    });
+};
