@@ -42,3 +42,12 @@ var pastSearch = function(pastSearch){
 
     searchHistoryButtonEl.prepend(pastSearchEl);
 }
+
+//this function is to tae you to the forecast for that city 
+var pastSearchHandler = function(event){
+    var city = event.target.getAttribute("data-city")
+    if(city){
+        getCityWeather(city);
+        get5Day(city);
+    }
+}
