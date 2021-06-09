@@ -2,7 +2,7 @@ var cities = [];
 
 //here I have the variables in order like in the html file 
 var cityFormEl=document.querySelector("#city-chosen");
-var cityInputEl=document.querySelector("#city;");
+var cityInputEl=document.querySelector("#city");
 var searchHistoryButtonEl = document.querySelector("#search-history");
 var citySearchInputEl=document.querySelector("#searched-city")
 var weatherOutputEl=document.querySelector("#weather-output");
@@ -12,7 +12,7 @@ var futureForecastEl = document.querySelector("#future-forecast");
 //this is going to be the function for the submit button to get the forecast for searched city
 var formSubmitHandler = function(event){
     event.preventDefault();
-    var city = cityInputEl.nodeValue.trim();
+    var city = cityInputEl.value.trim();
     if(city){
         getCityWeather(city);
         get5Day(city);
@@ -54,7 +54,7 @@ var pastSearchHandler = function(event){
 
 //fetch data from API for the weather forecast
 var getCityWeather = function(city){
-    var apiKey = "844421298d794574c100e3409cee0499"
+    var apiKey = "0364a348192cab2ba676dfd14badbf95"
     var apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
 
     fetch(apiURL)
