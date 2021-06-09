@@ -64,3 +64,49 @@ var getCityWeather = function(city){
         });
     });
 };
+
+//this function allows the data fetched to be displayed in the website
+var displayWeather = function(weather, searchCity){
+    //this clears old content
+    weatherOutputEl.textContent= "";  
+    citySearchInputEl.textContent=searchCity;
+ 
+    // date element
+    var currentDate = document.createElement("span")
+    currentDate.textContent=" --" + moment(weather.dt.value).format("MMM D, YYYY") + "-- ";
+    citySearchInputEl.appendChild(currentDate);
+ 
+    //this allows the icon from openweathermap to appear on the website 
+    var weatherIcon = document.createElement("img")
+    weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
+    citySearchInputEl.appendChild(weatherIcon);
+ 
+    //this creates span element to hold the temp information
+    var temperatureEl = document.createElement("span");
+    temperatureEl.textContent = "Temperature: " + weather.main.temp + " °F";
+    temperatureEl.classList = "list-group-item"
+   
+    //this creates span element to hold the wumidity information
+    var humidityEl = document.createElement("span");
+    humidityEl.textContent = "Humidity: " + weather.main.humidity + " %";
+    humidityEl.classList = "list-group-item"
+ 
+    //this creates span element to hold the wind information
+    var windSpeedEl = document.createElement("span");
+    windSpeedEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
+    windSpeedEl.classList = "list-group-item"
+ 
+    //this is to append temp to the container
+    weatherOutputEl.appendChild(temperatureEl);
+ 
+    //this is to append humidity to the container
+    weatherOutputEl.appendChild(humidityEl);
+ 
+    //this is to append wind to the container
+    weatherOutputEl.appendChild(windSpeedEl);
+ 
+    var lat = weather.coord.lat;
+    var lon = weather.coord.lon;
+    getUvIndex(lat,lon)
+
+}
