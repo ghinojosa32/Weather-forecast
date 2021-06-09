@@ -73,7 +73,7 @@ var displayWeather = function(weather, searchCity){
  
     // date element
     var currentDate = document.createElement("span")
-    currentDate.textContent=" --" + moment(weather.dt.value).format("MMM D, YYYY") + "-- ";
+    currentDate.textContent=" --" + moment(weather.dt.value).format("MMM Do YY") + "-- ";
     citySearchInputEl.appendChild(currentDate);
  
     //this allows the icon from openweathermap to appear on the website 
@@ -109,4 +109,16 @@ var displayWeather = function(weather, searchCity){
     var lon = weather.coord.lon;
     getUvIndex(lat,lon)
 
+}
+
+// this function is to fetch the uv data from the API
+var getUvIndex = function(lat,lon){
+    var apiKey = "844421298d794574c100e3409cee0499"
+    var apiURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
+    fetch(apiURL)
+    .then(function(response){
+        response.json().then(function(data){
+            displayUvIndex(data)
+        });
+    });
 }
