@@ -10,7 +10,7 @@ var forecastDisplayTitle = document.querySelector("#forecast-display");
 var futureForecastEl = document.querySelector("#future-forecast");
 
 //this is going to be the function for the submit button to get the forecast for searched city
-var formsubmitHandler = function(event){
+var formSubmitHandler = function(event){
     event.preventDefault();
     var city = cityInputEl.nodeValue.trim();
     if(city){
@@ -209,3 +209,7 @@ var display5Day = function(weather){//
     }
 
 }
+
+//this triggers the buttons to work
+cityFormEl.addEventListener("submit", formSubmitHandler);
+searchHistoryButtonEl.addEventListener("click", pastSearchHandler);
