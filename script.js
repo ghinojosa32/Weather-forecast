@@ -122,3 +122,40 @@ var getUvIndex = function(lat,lon){
         });
     });
 }
+
+// this function allows for the info fetched to be displayed on the website 
+var displayUvIndex = function(index){
+    var uvIndexEl = document.createElement("div");
+    uvIndexEl.textContent = "UV Index: "
+    uvIndexEl.classList = "list-group-item"
+
+    uvIndexValue = document.createElement("span")
+    uvIndexValue.textContent = index.value
+
+    if(index.value <=2){
+        uvIndexValue.classList = "low"
+    }else if(index.value >2 && index.value<=8){
+        uvIndexValue.classList = "regular"
+    }
+    else if(index.value >8){
+        uvIndexValue.classList = "high"
+    };
+
+    uvIndexEl.appendChild(uvIndexValue);
+
+    //this appends the index to the current weather
+    weatherOutputEl.appendChild(uvIndexEl);
+}
+
+// this function is to fetch the data for the next 5 days from the API
+var get5Day = function(city){
+    var apiKey = "844421298d794574c100e3409cee0499"
+    var apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
+
+    fetch(apiURL)
+    .then(function(response){
+        response.json().then(function(data){
+           display5Day(data);
+        });
+    });
+};
