@@ -25,3 +25,8 @@ var formsubmitHandler = function(event){
     saveSearch();
     pastSearch(city);
 }
+
+// this is going to be the function that saves the search history
+var saveSearch = function(){
+    localStorage.setItem("cities", JSON.stringify(cities));
+};
