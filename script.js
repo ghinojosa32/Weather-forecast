@@ -159,3 +159,53 @@ var get5Day = function(city){
         });
     });
 };
+
+// this function is to allow the data fetched from API to be displayed on the website 
+var display5Day = function(weather){//
+    futureForecastEl.textContent = ""
+    forecastDisplayTitle.textContent = "Forecast for the next 5 days:";
+
+    var forecast = weather.list;
+        for(var i=5; i < forecast.length; i=i+8){
+       var dailyForecast = forecast[i];
+        
+       
+       var forecastEl=document.createElement("div");
+       forecastEl.classList = "card bg-primary text-light m-2";
+
+
+
+       //this creates a date element for the future weather forecast
+       var forecastDate = document.createElement("h5")
+       forecastDate.textContent= moment.unix(dailyForecast.dt).format("MMM D, YYYY");
+       forecastDate.classList = "card-header text-center"
+       forecastEl.appendChild(forecastDate);
+
+       
+       //this creates a image element for the future weather forecast 
+           var weatherIcon = document.createElement("img")
+       weatherIcon.classList = "card-body text-center";
+       weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);  
+        //appends to card
+       forecastEl.appendChild(weatherIcon);
+       
+       //this is to create a temp span
+       var forecastTempEl=document.createElement("span");
+       forecastTempEl.classList = "card-body text-center";
+       forecastTempEl.textContent = dailyForecast.main.temp + " °F";
+
+        //appends to card
+        forecastEl.appendChild(forecastTempEl);
+        //this is to create a humidity span 
+       var forecastHumEl=document.createElement("span");
+       forecastHumEl.classList = "card-body text-center";
+       forecastHumEl.textContent = dailyForecast.main.humidity + "  %";
+
+       //appends to card
+       forecastEl.appendChild(forecastHumEl);
+
+       
+        futureForecastEl.appendChild(forecastEl);
+    }
+
+}
