@@ -113,7 +113,7 @@ var displayWeather = function(weather, searchCity){
 
 // this function is to fetch the uv data from the API
 var getUvIndex = function(lat,lon){
-    var apiKey = "844421298d794574c100e3409cee0499"
+    var apiKey = "0364a348192cab2ba676dfd14badbf95"
     var apiURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
     fetch(apiURL)
     .then(function(response){
@@ -149,7 +149,7 @@ var displayUvIndex = function(index){
 
 // this function is to fetch the data for the next 5 days from the API
 var get5Day = function(city){
-    var apiKey = "844421298d794574c100e3409cee0499"
+    var apiKey = "0364a348192cab2ba676dfd14badbf95"
     var apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
 
     fetch(apiURL)
